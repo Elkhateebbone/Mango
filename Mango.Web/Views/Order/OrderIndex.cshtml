@@ -1,0 +1,70 @@
+﻿@{
+    var status = Context.Request.Query["status"];
+    var approved = "";
+    var ReadyForPickup = "";
+    var Cancelled = "";
+    var all = "";
+
+    switch (status)
+    {
+        case "approved":
+            approved ="active text-white bg-secondary";
+            break;
+        case "ReadyForPickup":
+            ReadyForPickup = "active text-white bg-secondary";
+            break;
+        case "Cancelled":
+            Cancelled = "active text-white bg-secondary";
+            break;
+        default:
+            all = "active text-white bg-secondary";
+            break;
+    }
+}
+
+
+
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-black bg-secondary bg-gradient py-3">
+        <div class="row">
+            <h1 class="text-white">Order List</h1>
+        </div>
+    </div>
+    <ul class="list-group list-group-horizontal-sm  pt-2">
+        <a style="text-decoration:none" asp-controller="order" asp-action="OrderIndex" asp-route-status="approved">
+        <li class="list-group-item @approved">Approved</li>
+        </a>
+        <a style="text-decoration:none" asp-controller="order" asp-action="OrderIndex" asp-route-status="ReadyForPickup">
+        <li class="list-group-item @ReadyForPickup">Ready For Pick Up</li>
+        </a>
+        <a style="text-decoration:none" asp-controller="order" asp-action="OrderIndex" asp-route-status="Cancelled">
+        <li class="list-group-item @Cancelled">Cancelled</li>
+        </a>
+        <a style="text-decoration:none" asp-controller="order" asp-action="OrderIndex" asp-route-status="all">
+        <li class="list-group-item @all">All</li>
+        </a>
+
+    </ul>
+    <div class="card-body p-4">
+        <table id="tblData" class="table table-bordered table-striped pt-3">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                                        <td>Email</td>
+                    <td>Name</td>
+                    <td>Phone </td>
+                    <td>Status</td>
+                    <td>Total</td>
+                    <td></td>
+                   
+
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~/js/order.js"></script>
